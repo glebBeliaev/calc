@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyCalc | Онлайн-калькулятор процентов</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header"> 
+        <img src="images/icons/Logo.svg" alt="Логотип"> 
+        <span>EasyCalc</span>
+    </header>
+    <main> 
+        <h1 class="title_main">Онлайн-калькулятор процентов</h1>
+        <div class="main_calc">
+            <div class="cards">
+                <!-- Карточки калькулятора -->
+                <div class="card active" data-form="form_integer" id="card_integer">
+                    <img class="card_icon" src="images/icons/integer.svg" alt="Жёлтый круг">
+                    <h3 class="card_title">Найти целое число</h3>
+                    <p class="card_text">Я знаю число и сколько это процентов. Узнать целое значение.</p>
+                </div>
+                <div class="card" data-form="form_percent" id="card_percent">
+                    <img class="card_icon" src="images/icons/percent.svg" alt="">
+                    <h3 class="card_title">Найти процент по числу</h3>
+                    <p class="card_text">Я знаю два числа. Какой процент одно число составляет от другого?</p>
+                </div>
+                <div class="card" data-form="form_part" id="card_part">
+                    <img class="card_icon" src="images/icons/part.svg" alt="">
+                    <h3 class="card_title">Найти часть по проценту</h3>
+                    <p class="card_text">Я знаю процент и целое число. Какую часть числа составляет этот процент?</p>
+                </div>
+                <div class="card" data-form="form_operation" id="card_operation">
+                    <img class="card_icon" src="images/icons/operation.svg" alt="">
+                    <h3 class="card_title">Добавить / отнять процент</h3>
+                    <p class="card_text">Я знаю число, сколько будет если к нему добавить / отнять процент?</p>
+                </div>
+            </div>
+
+            <div class="calc">
+                <!-- Форма для карточки "Найти целое число" -->
+                <div class="calc_form" id="form_integer">
+                    <h2 class="calc_title">Найти целое число</h2>
+                    <div class="calc_inputs">
+                        <div class="input-container">
+                            <input class="calc_input" type="number" step="none"    id="form_integer_input_number" placeholder="Число">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_integer_input_percent" placeholder="Процент (%)">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calc_result">
+                        <p class="calc_result_title">Результат:</p>
+                        <h4 class="calc_result_number">0</h4>
+                    </div>
+                </div>
+
+                <!-- Форма для карточки "Найти процент по числу" -->
+                <div class="calc_form" id="form_percent" style="display: none;">
+                    <h2 class="calc_title">Найти процент по числу</h2>
+                    <div class="calc_inputs">
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_percent_input_number_1" placeholder="Число X">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_percent_input_number_2" placeholder="Число Y">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calc_result">
+                        <p class="calc_result_title">Результат:</p>
+                        <h4 class="calc_result_number">0</h4>
+                    </div>
+                </div>
+
+                <!-- Форма для карточки "Найти часть по проценту" -->
+                <div class="calc_form" id="form_part" style="display: none;">
+                    <h2 class="calc_title">Найти часть по проценту</h2>
+                    <div class="calc_inputs">
+                        
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_part_input_percent" placeholder="Процент (%)">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_part_input_number" placeholder="Число">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calc_result">
+                        <p class="calc_result_title">Результат:</p>
+                        <h4 class="calc_result_number">0</h4>
+                    </div>
+                </div>
+
+                <!-- Форма для карточки "Добавить / отнять процент" -->
+                <div class="calc_form" id="form_operation" style="display: none;">
+                    <h2 class="calc_title">Добавить / отнять процент</h2>
+                    <div class="calc_inputs">
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_operation_input_number" placeholder="Число">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="operation-buttons">
+                            <button type="button" class="operation-button active" data-operation="add">+</button>
+                            <button type="button" class="operation-button" data-operation="subtract">-</button>
+                        </div>
+                        <div class="input-container">
+                            <input class="calc_input" type="number" id="form_operation_input_percent" placeholder="Процент (%)">
+                            <button class="clear-btn" type="button">
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="calc_result">
+                        <p class="calc_result_title">Результат:</p>
+                        <h4 class="calc_result_number">0</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="bg_grid"></div>
+        </div>
+        
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

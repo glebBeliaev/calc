@@ -1,0 +1,432 @@
+body {
+    background-color: var(--color-grey-900);
+    color: var(--color-white-100);
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    appearance: none; /* Поддерживаемые браузеры */
+}
+
+/* Убираем стрелки для всех браузеров, кроме Firefox */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+main, .header {
+    max-width: 1160px;
+}
+
+main {
+    margin: auto;
+    position: relative;
+    padding: 0px 16px;
+}
+
+
+.header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.header span {
+    font: var(--font-headline-s);
+    margin-left: 8px;
+    color: var(--color-yellow-100);
+}
+
+.header img {
+    height: 32px;
+    width: 32px;
+}
+
+.title_main {
+    font: var(--font-headline-m);
+    color: var(--color-white-100);
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.main_calc {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+}
+
+/* КАРТОЧКИ-КНОПКИ */
+.cards {
+    display: grid;
+    width: 572px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--color-grey-900);
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid var(--color-grey-600);
+    cursor: pointer;
+    transition: background-color var(--animation-basic);
+}
+
+.card:hover {
+    background-color: var(--color-grey-800);
+}
+
+/* Активная карточка */
+.card.active {
+    background-color: var(--color-grey-800);
+    border: 1px solid var(--color-yellow-100);
+}
+
+.card.active .card_title {
+    color: var(--color-yellow-100);
+}
+
+.card.active .card_text {
+    color: var(--color-white-100);
+}
+
+.card_icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+    padding: 14px;
+    background-color: var(--color-grey-700);
+    border-radius: 50%;
+}
+
+.card_title {
+    font: var(--font-subhead-m);
+    color: var(--color-white-100);
+}
+
+.card_text {
+    font: var(--font-body-m);
+    color: var(--color-grey-100);
+}
+
+/* КАЛЬКУЛЯТОР-ФОРМА */
+.calc {
+    display: flex;
+    flex-direction: column;
+    max-width: 474px;
+    background-color: var(--color-grey-900);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--color-grey-600);
+    box-sizing: border-box;
+    align-self: flex-start;  
+}
+
+.calc_form {
+    position: relative;
+    column-gap: 32px;
+    min-width: 280px;
+}
+
+.calc_title {
+    font: var(--font-subhead-l);
+    color: var(--color-yellow-100);
+}
+
+.calc_inputs {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+}
+
+.input-container {
+    position: relative; /* Контейнер для позиционирования крестика */
+    display: inline-block; /* Для корректной работы размеров */
+}
+
+.calc_input {
+    position: relative;
+    background-color: var(--color-grey-800);
+    color: var(--color-yellow-100);
+    font: var(--font-body-m);
+    border-radius: 8px;
+    height: 48px;
+    width: 100%;
+    padding: 16px;
+    padding-right: 40px; /* Отступ для кнопки */
+    box-sizing: border-box;
+    border: 0;
+}
+
+.calc_input:focus {
+    color: var(--color-white-100);
+    border: 1px solid var(--color-yellow-100);
+    outline: none;
+}
+
+.clear-btn {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10px; /* Позиционируем иконку внутри поля ввода */
+    top: 50%;
+    transform: translateY(-50%); /* Центрируем иконку вертикально */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    visibility: hidden; /* Скрыта по умолчанию */
+}
+
+.clear-btn svg {
+    width: 20px; /* Размер иконки */
+    height: 20px;
+    color: var(--color-grey-200);
+}
+
+.calc_input:focus + .clear-btn,
+.calc_input:not(:placeholder-shown) + .clear-btn {
+    visibility: visible; /* Иконка появляется, когда есть текст или поле в фокусе */
+}
+
+.calc_result {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calc_result_title {
+    font: var(--font-body-m);
+    color: var(--color-grey-300);
+}
+
+.calc_result_number {
+    font: var(--font-headline-l);
+    color: var(--color-white-100);
+}
+
+.bg_grid {
+    width: 94%;
+    height: 500px;
+    background-image: url(images/background_grid.svg);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    position: absolute;
+    left: 3%;
+    z-index: -1;
+    top: -24px; 
+    opacity: 50%;
+}
+
+.operation-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    height: 48px;    
+}
+
+.operation-button {
+    width: 40px;
+    height: 20px;
+    font: var(--font-label-m);
+    line-height: 20px;
+    color: var(--color-grey-100);   
+    background-color: var(--color-grey-800);
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color var(--animation-basic);
+}
+
+.operation-button:hover {
+    background-color: var(--color-grey-300);
+    color: var(--color-white-100);
+}
+
+.operation-button.active {
+    background-color: var(--color-yellow-100);
+    color: var(--color-grey-800);
+}
+
+@media (max-width: 960px){
+
+    main {
+        max-width: 1160px;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title_main {
+        margin-top: 40px;
+        margin-bottom: 24;
+        width: 100%;
+        max-width: 560px;
+    }
+
+    .main_calc {
+        display: flex;
+        max-width: 560px;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 40px;
+    }
+    
+    .calc {
+        max-width: 560px; 
+    }
+
+    .cards {
+        max-width: 560px;
+    }
+
+}
+
+@media (max-width: 592px){
+
+    main {
+        max-width: 360px;        
+    }
+
+    .title_main {
+        font: var(--font-headline-s);
+        margin-top: 8px;
+        margin-bottom: 24px;
+        width: 100%;
+        padding: 0px 16px;
+    }
+    
+    .header span {
+        font: var(--font-headline-xs);
+        margin-left: 8px;
+    }
+    
+    .header img {
+        height: 24px;
+        width: 24px;
+    }
+
+    .main_calc {
+        display: flex;
+        width: 100%;
+        padding: 0px 16px;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .calc {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 24px;
+         
+    }
+
+    .calc_form {
+        position: relative;
+        column-gap: 20px;
+        min-width: 100%;
+    }
+
+    .calc_title {
+        font: var(--font-subhead-m);
+        width: 100%;
+    }
+    
+    .calc_inputs {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .calc_result {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .calc_result_title {
+        font: var(--font-body-m);
+    }
+    
+    .calc_result_number {
+        font: var(--font-headline-m);
+    }
+
+    .cards {
+        display: grid;
+        width: 100%;
+        padding: 0px 16px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    /* Активная карточка */
+    .card.active {
+        background-color: var(--color-grey-800);
+        border: 1px solid var(--color-yellow-100);
+    }
+
+    .card.active .card_title {
+        color: var(--color-yellow-100);
+    }
+
+    .card.active .card_text {
+        color: var(--color-white-100);
+    }
+
+    .card_icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 0px;
+        padding: 4px;
+        background-color: var(--color-grey-700);
+        border-radius: 50%;
+    }
+
+    .card_title {
+        font: var(--font-subhead-s);
+        color: var(--color-white-100);
+    }
+
+    .card_text {
+        display: none;
+        font: var(--font-body-m);
+        color: var(--color-grey-100);
+    }
+
+    .bg_grid {
+        width: 94%;
+        height: 600px;
+    }
+
+    .operation-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center ;
+        gap: 16px;
+        height: 48px;    
+    }
+    
+    .operation-button {
+        width: 100%;
+        height: 36px;        
+    }
+
+}
